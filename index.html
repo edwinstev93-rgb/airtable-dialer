@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Airtable Phone Dialer</title>
+</head>
+
+<body style="font-family:Arial;text-align:center;padding-top:60px;">
+
+    <h2>Airtable Phone Dialer</h2>
+
+    <p id="number">Preparing call...</p>
+
+    <button id="callButton"
+            style="font-size:20px;padding:15px 35px;cursor:pointer;">
+        📞 CALL NOW
+    </button>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const number = params.get("number");
+
+        const display = document.getElementById("number");
+        const button = document.getElementById("callButton");
+
+        if (number) {
+            display.textContent = "Call " + number;
+
+            button.onclick = function () {
+                window.location.href = "tel:" + number;
+            };
+        } else {
+            display.textContent = "No phone number supplied.";
+            button.disabled = true;
+        }
+    </script>
+
+</body>
+</html>
